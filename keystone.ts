@@ -216,7 +216,7 @@ const UploadPost = list({
   },
   hooks: {
     async resolveInput({ resolvedData }) {
-      if (resolvedData.attachment.filename) {
+      if (resolvedData.attachment?.filename) {
         const filePath = path.join(
           process.cwd(),
           './_posts/',
@@ -231,11 +231,12 @@ const UploadPost = list({
       if (operation === 'update') {
         if (!originalItem.isLive && item.isLive) {
           const [{ id: postId }] = await createPosts([item.preview], context)
-          context.query.UploadPost.updateOne({
-            data: { preview: '', post: { connect: { id: postId } } },
+          await context.query.UploadPost.updateOne({
+            // Retain the original markdown in Postgres after publication.
+            data: { post: { connect: { id: postId } } },
             where: { id: item.id.toString() },
           })
-          context.query.Post.updateOne({
+          await context.query.Post.updateOne({
             data: { attachment: { connect: { id: item.id } } },
             where: { id: postId },
           })
@@ -276,6 +277,26 @@ export default withAuth(
           : 'file:./app-dev.db'),
     },
     session,
+    server: {
+      extendExpressApp: (app, commonContext) => {
+        // Never serve unpublished markdown through an anonymous static route.
+        // New imports retain raw markdown in Postgres; old imports remain in git.
+        app.get('/files/:filename', async (req, res) => {
+          const context = await commonContext.withRequest(req, res)
+          if (!context.session?.data) { res.sendStatus(401); return }
+          const filename = path.basename(req.params.filename)
+          const upload = await context.prisma.uploadPost.findFirst({
+            where: { attachment_filename: filename },
+          })
+          if (!upload) { res.sendStatus(404); return }
+          try {
+            const markdown = upload.preview ||
+              await fs.readFile(path.join(process.cwd(), '_posts', filename), 'utf8')
+            res.type('text/markdown').send(markdown)
+          } catch { res.sendStatus(404) }
+        })
+      },
+    },
     ui: {
       isAccessAllowed: (context) => !!context.session?.data,
     },
@@ -288,10 +309,8 @@ export default withAuth(
       local_file_storage: {
         kind: 'local',
         type: 'file',
-        generateUrl: (path) => `http://localhost:3000/files${path}`,
-        serverRoute: {
-          path: '/files',
-        },
+        generateUrl: (path) => `/files${path}`,
+        serverRoute: null,
         transformName: (filename) => {
           return filename
         },

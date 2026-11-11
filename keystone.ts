@@ -277,6 +277,11 @@ export default withAuth(
           : 'file:./app-dev.db'),
     },
     session,
+    graphql: {
+      // Raise the GraphQL request body limit (express json() default is 100kb,
+      // which rejected Brite's ~180kb post with HTTP 413 Payload Too Large).
+      bodyParser: { limit: '10mb' },
+    },
     server: {
       extendExpressApp: (app, commonContext) => {
         // Never serve unpublished markdown through an anonymous static route.

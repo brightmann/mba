@@ -13,6 +13,7 @@ generator client {
 
 model Post {
   id            String      @id @default(cuid())
+  isPublished   Boolean     @default(true)
   slug          String      @unique @default("")
   title         String      @default("default title")
   tags          Tag[]       @relation("Post_tags")

@@ -1,17 +1,19 @@
 {
   "private": true,
   "scripts": {
-    "postinstall": "keystone postinstall",
+    "postinstall": "keystone postinstall --fix",
     "keystone:dev": "ENV=dev keystone dev",
     "keystone:build": "NODE_ENV=production keystone build",
     "keystone:start": "NODE_ENV=production keystone start",
     "deploy": "yarn keystone:build && yarn keystone:start",
     "healthcheck": "bash ./script/check.sh",
     "db:prod": "NODE_ENV=production yarn keystone prisma db push",
-    "db:sync": "rm -f ./app-dev.db && cp ./app.db ./app-dev.db"
+    "db:sync": "rm -f ./app-dev.db && cp ./app.db ./app-dev.db",
+    "bootstrap": "ts-node --transpile-only script/bootstrap.ts"
   },
   "dependencies": {
     "@keystone-6/core": "^5.1.0",
+    "@keystone-6/auth": "^7.0.0",
     "dayjs": "^1.11.2",
     "gray-matter": "^4.0.3",
     "reading-time": "^1.5.0",
@@ -27,7 +29,8 @@
     "typescript": "^4.2.4"
   },
   "resolutions": {
-    "next": "13.3.0"
+    "next": "13.3.0",
+    "graphql": "^16.8.1"
   },
   "version": "0.0.1"
 }

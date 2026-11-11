@@ -1,0 +1,503 @@
+{
+ "Tag": [
+  {
+   "id": "clev8cab70002yvgyq429lrps",
+   "name": "css"
+  },
+  {
+   "id": "clevkpu7u00118qgyunb04uuj",
+   "name": "react"
+  },
+  {
+   "id": "clevkpu7w00208qgyy7t49hgs",
+   "name": "git"
+  },
+  {
+   "id": "clexuqgdh0004v8mxqgwh6n0v",
+   "name": "问题记录"
+  },
+  {
+   "id": "cley0h909000278mxvgtmn1jv",
+   "name": "react-native"
+  },
+  {
+   "id": "clf0l0fzy00137umxoja46ebr",
+   "name": "react-hook"
+  },
+  {
+   "id": "clh1qt8x70000msc3ukmmuejk",
+   "name": "开发工具"
+  },
+  {
+   "id": "clh26e1mk0000mspgd110m134",
+   "name": "翻译文章"
+  },
+  {
+   "id": "clh26e1mo0002mspgzcz42tax",
+   "name": "性能优化"
+  },
+  {
+   "id": "clhbsv5160000gyrn2pfho26c",
+   "name": "技术方案"
+  },
+  {
+   "id": "cljnpqu7k0002mxkok7sclhob",
+   "name": "开发资源"
+  },
+  {
+   "id": "clo42la9y0002mxsgq79xjo6v",
+   "name": "工程化"
+  }
+ ],
+ "Category": [],
+ "UploadPost": [
+  {
+   "id": "cli7dave90004mse7n6xnep6e",
+   "isLive": 1,
+   "uploadTime": "1685275146998",
+   "attachment_filesize": 5344,
+   "attachment_filename": "build-blog-with-nextjs.md",
+   "preview": ""
+  },
+  {
+   "id": "cli7e7kz1000cmse7ouokz4ip",
+   "isLive": 1,
+   "uploadTime": "1685276692747",
+   "attachment_filesize": 4929,
+   "attachment_filename": "build-blog-with-headless-cms.md",
+   "preview": ""
+  },
+  {
+   "id": "clidas0ym0000msccwmlpwefp",
+   "isLive": 1,
+   "uploadTime": "1685633830467",
+   "attachment_filesize": 3088,
+   "attachment_filename": "deploy-blog-to-github-pages.md",
+   "preview": ""
+  },
+  {
+   "id": "clipqvnas0004msp18lq0nn9i",
+   "isLive": 1,
+   "uploadTime": "1686386710175",
+   "attachment_filesize": 7418,
+   "attachment_filename": "separate-keystone-from-nextjs-blog.md",
+   "preview": ""
+  },
+  {
+   "id": "cljnpo3pe0000mxkoaq1q4dj6",
+   "isLive": 1,
+   "uploadTime": "1688440275079",
+   "attachment_filesize": 1116,
+   "attachment_filename": "ignore-file-with-jianguoyun-sync.md",
+   "preview": ""
+  },
+  {
+   "id": "cljy3307t0000mx5vu1wyssrr",
+   "isLive": 1,
+   "uploadTime": "1689067424874",
+   "attachment_filesize": 1834,
+   "attachment_filename": "setState-callback-react-hooks.md",
+   "preview": ""
+  },
+  {
+   "id": "clm3mjvk40000gyn80k1ai74r",
+   "isLive": 1,
+   "uploadTime": "1693755939323",
+   "attachment_filesize": 2797,
+   "attachment_filename": "CSS-color-function-HSL.md",
+   "preview": ""
+  },
+  {
+   "id": "clm3mkaq80004gyn88y02hapv",
+   "isLive": 1,
+   "uploadTime": "1693755959452",
+   "attachment_filesize": 8016,
+   "attachment_filename": "react-native-popup-hook.md",
+   "preview": ""
+  },
+  {
+   "id": "clo42kn2e0000mxsg3aqn20i9",
+   "isLive": 1,
+   "uploadTime": "1698136439138",
+   "attachment_filesize": 2204,
+   "attachment_filename": "set-env-var-in-node-project.md",
+   "preview": ""
+  },
+  {
+   "id": "clqytwgha0002mxc25qswiyug",
+   "isLive": 1,
+   "uploadTime": "1704349863264",
+   "attachment_filesize": 2063,
+   "attachment_filename": "blog-first-paint-issue.md",
+   "preview": ""
+  }
+ ],
+ "Post": [
+  {
+   "id": "clev8cabd0012yvgyayxp1dg3",
+   "slug": "css-custom-var",
+   "title": "CSS 自定义属性",
+   "category": null,
+   "attachment": null,
+   "ctime": 1637681223000.0,
+   "date": "11-23",
+   "readingTime": "2",
+   "nextArticle": "clm3mjz050002gyn807mtyz1d",
+   "brief": "css 自定义属性的使用方式和使用场景",
+   "content": "\n\n## 背景\n\n1. 原生 CSS 在代码复用方面有所欠缺，例如典型的例子 - 主题，每一个 `font-size`、`color`、`border` 等属性值必须重复编写，若有改动则每一处都要修改。\n2.  `font-size`、`color` 等单纯就是一个值，就像魔术数字，没有语义。\n3. 比较难使用 JS 动态修改，使用 class 不够明确，使用 style 又不能修改 `::after` 等伪元素。\n\n\n\n## 自定义属性(变量)\n\n属性名能够自定义，属性值是任意合法 CSS 值。\n\n属性名以 `--` 开头，大小写敏感，如 `--custom: 15px`，通过 `var(--custom, defaultValue)` 引用\n\n```css\nelement {\n  --main-custom-name: 90px;\n}\nchild {\n  width: var(--main-custom-name, 40px)\n}\n```\n\n默认会被继承，所以定义在 `:root` 伪类下，则所有子元素都可以获取到。\n\n若自定义属性不合法或不存在，会被该属性的默认值替换，例如\n\n```CSS\ndiv {\n  display: var(--layout) // block\n}\n```\n\n\n\n## 通过 JS 设置\n\n```javascript\ndocument.querySelector('.foo').style.getPropertyValue('--primary')\ndocument.querySelector('.foo').style.setProperty('--primary', 'blue')\n```\n\n\n\n## 使用场景\n\n1. 主题\n2. 依赖某个元素或配合一些如 `IntersectionObserver`、`getBoundingClientRect` 动态设置一个元素的样式\n\n## 参考\n\n1. https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_custom_properties\n\n\n\n> 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 0.0
+  },
+  {
+   "id": "clevkpu8100398qgys7brszna",
+   "slug": "error-boundary-for-custom-error",
+   "title": "ErrorBoundary 处理自定义错误",
+   "category": null,
+   "attachment": null,
+   "ctime": 1639057680000.0,
+   "date": "12-09",
+   "readingTime": "2",
+   "nextArticle": null,
+   "brief": "如何使用 react 的 error boundary 处理所有错误？",
+   "content": "\n\n## 背景\n\n[错误边界](https://zh-hans.reactjs.org/docs/error-boundaries.html)是一种 React 组件，这种组件可以捕获发生在其子组件树任何位置的 JavaScript 错误，并打印这些错误，同时展示降级 UI。\n\n错误边界在==渲染期间、生命周期方法和整个组件树的构造函数==中捕获错误。\n\n## 问题\n\n`react` 强调了只有上面 3 种实现下才会捕获错误。\n\n无法自动捕获下面 4 种实现\n\n- 事件处理\n- 异步代码（例如 `setTimeout` 、`Promise`回调函数）\n- 服务端渲染\n- 它自身抛出来的错误（并非它的子组件）\n\n通常希望业务代码能够复用 `ErrorBoundary` 的错误处理逻辑。\n\n## 实现\n\n如果要 `ErrorBoundary` 能处理业务代码的自定义错误，只要在渲染期间抛出错误即可。\n\n### class component\n\n```javascript\ntry {\n  const res = await fetchMayError()\n} catch (err) {\n  this.setState(() => {\n    throw err\n  })\n}\n```\n\n### hooks\n\n```typescript\nfunction useErrorHandler() {\n  const [error, setError] = React.useState(null)\n  if (error != null) throw error\n  return setError\n}\n\nfunction Foo() {\n  const handleError = useErrorHandler()\n  fetchMayError().catch(handleError)\n  return <div></div>\n}\n```\n\n## Inspired\n\n1. https://github.com/bvaughn/react-error-boundary\n\n> 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 0.0
+  },
+  {
+   "id": "clevkpu8400508qgylr2fojss",
+   "slug": "git-includeif",
+   "title": "Git 多用户配置",
+   "category": null,
+   "attachment": null,
+   "ctime": 1628767701000.0,
+   "date": "08-12",
+   "readingTime": "2",
+   "nextArticle": null,
+   "brief": "用 git includeif 实现多用户信息管理",
+   "content": "\n## 前言\n\n安装 Git 后会设置一个全局的用户名/邮箱，Git 的全局配置保存在 `~/.gitconfig`。\n\n这样，公司项目和个人项目的 `git commit` 信息都会用全局的用户名/邮箱，很明显个人项目最好不要包含公司的任何信息。\n\n那如何单独为项目设置的用户名？  \n可以用 `git config user.name \"your name\"` 为项目单独设置，也可以用 `includeIf` 特性为部分项目设置\n\n## includeIf\n\nGit v2.13 提供 `includeIf` 条件配置，可以指定某个目录所使用的 `gitconfig`\n\n首先，创建 `.gitconfig-work` 文件，用于存放公司项目的目录\n\n```shell\n# ~/.gitconfig-work\n[user]\n  name = my work\n  email = work@company.net\n```\n\n然后，创建 `.gitconfig-me` 文件，为存放个人项目的目录\n\n```shell\n# ~/.gitconfig-me\n[user]\n  name = my github\n  email = me@gmail.net\n```\n\n最后，修改 `.gitconfig` 文件\n\n```shell\n# ~/.gitconfig\n[includeIf \"gitdir:~/work/\"]\n  path = .gitconfig-work\n[includeIf \"gitdir:~/me/\"]\n  path = .gitconfig-me\n```\n\n个人项目放到 `~/me/` 下，工作项目放到 `~/work/`，这样就不用每个项目单独设置了。\n\n### 参考\n\n1. https://stackoverflow.com/questions/8801729/is-it-possible-to-have-different-git-configuration-for-different-projects\n\n> 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 0.0
+  },
+  {
+   "id": "clexuqgdz0017v8mx04k6jn14",
+   "slug": "whistle-proxy-in-local-dev",
+   "title": "问题记录-本地开发用 whistle 做代理",
+   "category": null,
+   "attachment": null,
+   "ctime": 1615028100000.0,
+   "date": "03-06",
+   "readingTime": "1",
+   "nextArticle": "clqytwj110004mxc2rca6mof8",
+   "brief": "在本地开发用 whistle 做代理，记录配置 whistle rules 后遇到的请求问题",
+   "content": "\n## 背景\n\n在本地用 localhost 开发时，由于 `SameSite cookies` 的限制，请求跨域的后端 API 浏览器不会自动带上 cookie。\n\n一种解决办法是在本地用 whistle 做反向代理，开发时访问对外域名而绕过跨域的限制，下面记录遇到的问题。\n\n## 问题 1  net::ERR_SSL_PROTOCOL_ERROR\n\n```\nhttps://test.foo.com http://localhost:4900\n```\n\n配置 whistle rule，用 @vue/cli-service 启动项目后，访问  `https://test.foo.com`  出现下面的错误   `net::ERR_SSL_PROTOCOL_ERROR`\n![](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/20230307110309.png)\n\n`https://localhost:4900/sockjs-node/info` 是热更新添加的链接，用来检测 WebSocket 服务可用性，由于我访问的 web 是 https，所以 WebSocket 也必须是 wss\n\n### 处理方法\n\n配置 webpack-dev-server，让 `https://localhost:4900/sockjs-node/info` 变成 `https://test.foo.com/sockjs-node/info`\n\n```js\ndevServer: {\n  ...,\n  public: 'test.foo.com'\n}\n```\n\n添加 whistle rule\n\n```\nwss://test.foo.com ws://localhost:4900\n```\n\n## 问题 2  Invalid Host/Origin header\n\nwss 请求会返回  `Invalid Host/Origin header`\n\n为了防止 DNS Rebinding 攻击，webpack-dev-server 会取请求头的 host/orign 和配置的 devServer.host 或 devServer.public 做比较，只允许配置相同的请求\n\n### 处理方法\n\n方法 1\n\n配置 webpack-dev-server 的  allowedHosts\n\n```js\ndevServer: {\n  allowedHosts:  'all',// webpack 4.0+\n}\n```\n\n方法 2\n\n配置 whistle rule，修改请求头的 host/origin\n\n```\n  wss://seller-cms.test.shopee.com ws://localhost:4900 reqHeaders://{wss-header}\n```\n\n**wss-header**\n\n```\n{\n  \"Host\": \"localhost:4900\",\n  \"Origin\": \"http://localhost:4900\"\n}\n```\n\n> 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 0.0
+  },
+  {
+   "id": "cley0h93w001778mxtbmiuav7",
+   "slug": "expo-intro",
+   "title": "Expo 简介",
+   "category": null,
+   "attachment": null,
+   "ctime": 1634299941000.0,
+   "date": "10-15",
+   "readingTime": "3",
+   "nextArticle": null,
+   "brief": "expo 是什么？expo 集成了 React Native 生态，用于快速开发和部署 React Native 应用，开发者只需懂 React Native",
+   "content": "\n# Expo 简介\n\n> Expo 是一个用于 React 应用的框架和平台。其 Expo SDK 提供了 React Native 和 Native 的组件或工具，帮助开发者仅使用 JavaScript/TypeScript，在 iOS、Android 和 Web 应用上开发、构建、部署和快速迭代。 -- https://docs.expo.dev/\n\n## 背景\n\n开发、构建、发布基于 React Native 的 App 时，可能要修改 Native 的代码或 App 配置，这就需要安装 Xcode 或 Android Studio，配置环境，以及熟悉 iOS 或 Android 开发。这对开发者来说存在相当大的成本。\n\nExpo 已经帮你集成了这些，你只需专注 JavaScript/TypeScript 的代码开发，你可以从 Expo SDK 引入 React Native 或 Native 的组件，另外可以下载 Expo Go App，便于在真机上调试代码、预览效果。\n\n## 开发\n\n#### 初始化项目\n\n```shell\nnpm install --global expo-cli\n# 创建新项目\nexpo init my-project\n```\n\n#### 目录结构\n\n```shell\n├── App.tsx\n├── app.json # app 配置如图标、名称、版本等等\n├── assets\n├── babel.config.js\n├── node_modules\n├── package.json\n├── tsconfig.json\n└── yarn.lock\n```\n\n#### 修改默认入口\n\n```json\n// app.json\n{\n  \"expo\": {\n    \"description\": \"\",\n    \"entryPoint\": \"./index.ts\"\n  }\n}\n```\n\n```javascript\n// index.ts\nimport { registerRootComponent } from 'expo';\nimport App from '@src/App';\n\nregisterRootComponent(App);\n```\n\n#### 安装功能模块\n\n```shell\nexpo install expo-camera\n```\n\n有 `yarn.lock` 时，`expo install` 使用 yarn 安装\n\n有 `package-lock.json` 时， `expo install` 使用 npm 安装\n\n## 发布\n\nExpo 也是个沙盒平台，可以在 Expo Go App 访问开发者发布的代码，例如 React Native 官方文档里样例 demo\n\n![](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/expo-intro-1.png)\n\n最后，Expo 的一套集成工具让前端开发者无需过多关注 Native 的配置，大大降低了开发成本，使 App 可以快速迭代。\n\n> 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 0.0
+  },
+  {
+   "id": "clf0l0g0q00437umxfbbegzig",
+   "slug": "log-of-reack-hooks-trap",
+   "title": "问题记录-记一次 react hooks 闭包陷阱",
+   "category": null,
+   "attachment": null,
+   "ctime": 1641563100000.0,
+   "date": "01-07",
+   "readingTime": "2",
+   "nextArticle": null,
+   "brief": "使用 react hooks 遇到状态是旧的，没有更新闭包陷阱，总结出现的场景和修改方法",
+   "content": "\n\n### 出现闭包陷阱的场景\n\n- 函数里面更新 state 同时使用了 state\n\n```JavaScript\n    const [val, setVal] = useState(0)\n    const fn0 = () => {\n      saveLatestVal(val)\n    }\n    const fn1 = () => {\n      setVal(1)\n      fn0()\n    }\n```\n\n- 有异步，多次变更复杂 state 时\n\n```JavaScript\nconst handleClick = async (key) => {\n\tsetLoadingMap({ ...loadingMap, [key]: true });\n\tawait delay(3000);\n\tsetLoadingMap({ ...loadingMap, [key]: false });\n};\n```\n\n### 解决方案\n\n- 使用 useRef，ref 具有穿透性\n- 用 useEffect，例如在嵌套函数里变更另一个 state，在 useEffect 里执行 saveLatestVal\n\n```JavaScript\n    const [val, setVal] = useState(0)\n    const [version, setVersion] = useState(0)\n    const fn0 = () => {\n      setVersion(1)\n    }\n    const fn1 = () => {\n      setVal(1)\n      fn0()\n    }\n    useEffect(() => saveLatestVal(val), [version])\n```\n\n- 使用 useReducer，分离 state，对异步，多次变更复杂 state 时\n\n```JavaScript\nconst handleClick = async (key) =>\n\tdispatch({ [key]: true });\n\tawait delay(3000);\n\tdispatch({ [key]: false });\n};\n```\n\n> 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 0.0
+  },
+  {
+   "id": "clh1qt8xc0002msc39cuweq8c",
+   "slug": "install-ruby-cocoapods-on-mac",
+   "title": "mac 安装 ruby 和 cocoapods",
+   "category": null,
+   "attachment": null,
+   "ctime": 1682607120000.0,
+   "date": "04-27",
+   "readingTime": "1",
+   "nextArticle": null,
+   "brief": "苹果 Mac 系统安装 ruby 和 cocoapods 的过程，碰到的问题",
+   "content": "\n### 查看 ruby 版本\n\n```shell\nruby -version\n# 输出\nruby 2.6.10p210 (2022-04-12 revision 67958) [universal.arm64e-darwin22]\n```\n\n这是 Mac 系统自带的 ruby\n\n### 安装指定 ruby 版本\n\n先安装 `rvm`，`rvm` 是 ruby 版本管理器，类似 NodeJS 的是 `nvm`\n\n```shell\ncurl -sSL https://get.rvm.io | bash -s stable --ruby\n```\n\n安装指定版本\n\n```shell\nrvm install 3.2.2\n```\n\n设置默认版本\n\n```shell\nrvm use 3.2.2 --default\n```\n\n### 安装 cocoapods\n\n```shell\nsudo gem install cocoapods\n\npod --version\n```\n\n### 常见问题\n\n#### 用 brew 安装 ruby 后版本还是默认的？\n\n查看 brew 安装的包的位置\n\n```shell\nbrew config\n...\nHOMEBREW_PREFIX: /opt/homebrew\n```\n\n因此 brew 安装的包位于 `/opt/homebrew/Cellar/`，如果配置环境变量难，那就用 `rvm`\n\n#### 安装 cocoapods 后 pod 命令还是失败？\n\n可能安装到其他 ruby 版本下了\n\n> 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 0.0
+  },
+  {
+   "id": "clh26e1n10006mspg64w3qxqy",
+   "slug": "zh-cn-js-engine-shape-inline-cache",
+   "title": "译 - JavaScript 引擎底层：Shapes 和 Inline Caches",
+   "category": null,
+   "attachment": null,
+   "ctime": 1666060980000.0,
+   "date": "10-18",
+   "readingTime": "18",
+   "nextArticle": null,
+   "brief": "js 引擎编译流程的简单描述；js 引擎用 shape 和 inline cache 做性能优化，介绍 shape 和 inline cache",
+   "content": "\n> 原文 [JavaScript engine fundamentals: Shapes and Inline Caches · Mathias Bynens](https://mathiasbynens.be/notes/shapes-ics)\n\n本文描述了所有 JavaScript 引擎共有的一些关键基础知识——而不仅是 V8。作为 JavaScript 开发人员，深入了解 JavaScript 引擎的工作原理可以帮你了解代码的性能点。\n\n## JavaScript 引擎编译流程\n\n从你编写的 JavaScript 代码开始，JavaScript 引擎解析源代码并将其转换为抽象语法树 (AST)，之后解释器基于 AST 生成字节码。\n\n![parse-js](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/parse-js.png)\n\n为了使其运行得更快，会把生成的字节码与编译分析数据一起发送到优化编译器。优化编译器根据编译分析数据做出某些假设，然后生成高度优化的机器代码。如果某些假设被证明是不对的，则优化编译器会取消优化并返回给解释器。\n\n### 解释器/编译器的工作流程\n\n现在，让我们分析这个流程中实际运行 JavaScript 代码的部分，即代码被解释和优化的部分，并回顾一下主要 JavaScript 引擎之间的一些差异。\n\n通常，有一个包含解释器和优化编译器的流程。解释器快速生成未优化的字节码，优化编译器需要更长的时间，但最终生成高度优化的机器码。\n\n![parse-js-2](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/parse-js-2.png)\n\n这个流程基本就是 V8 的工作方式\n\n![parse-js-v8](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/parse-js-v8.png)\n\nV8 中的解释器称为 Ignition，负责生成和执行字节码。当它运行字节码时，它会收集分析数据，例如经常调用的函数，这些数据可用于加快以后的执行速度。生成的字节码和分析数据被传递给我们的优化编译器 TurboFan，根据分析数据生成高度优化的机器代码。\n\n![parse-js-SpiderMonkey](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/parse-js-SpiderMonkey.png)\n\n在 Firefox 和 SpiderNode 中使用的 Mozilla JavaScript 引擎 SpiderMonkey 的做法略有不同。他们有两个优化编译器。解释器先让 Baseline 编译器优化，生成稍微优化的代码，然后 IonMonkey 编译器结合运行代码时收集的分析数据，生成高度优化的代码。如果推测优化失败，IonMonkey 会回退到 Baseline 的代码。\n\n![parse-js-charkra](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/parse-js-charkra.png)\n\nEdge 和 Node-ChakraCore 中使用的 Microsoft JavaScript 引擎 Chakra 和 SpiderMonkey 有非常相似的设置，带有两个优化编译器。解释器先让 SimpleJIT（这里的 JIT 代表即时编译器）它会生成稍微优化的代码，然后 FullJIT 编译器结合分析数据，生成高度优化的代码。\n\n![parse-js-jscore](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/parse-js-jscore.png)\n\nJavaScriptCore（JSC）是 Apple 的 JavaScript 引擎，用于 Safari 和 React Native，通过三种不同的优化编译器将代码优化发挥到了极致。LLInt（Low-Level Interpreter），先让 Baseline 编译器优化，再到 DFG（Data Flow Graph）编译器，最后到 FTL（Faster Than Light）编译器。\n\n为什么有些引擎有多个优化编译器？这都是关于权衡取舍的，一方面解释器可以快速生成字节码去运行代码，但字节码通常效率不高；另一方面，优化编译器需要更长的时间，但最终会生成更高效的机器代码。一些引擎选择添加多个具有不同时间/效率特征的优化编译器，允许以额外的复杂性为代价对这些权衡进行更细粒度的控制。另一个权衡与内存使用有关。\n\n以上我们说明了各个 JavaScript 引擎在解释器和优化编译器运行流程方面的区别。但除了这些差异之外，在较高的层次上，所有 JavaScript 引擎都具有相同的架构：有一个解析器和某种解释器/编译器运行流程。\n\n## JavaScript Object Model\n\n让我们具体分析某些方面的实现方式来了解 JavaScript 引擎还有哪些共同点。\n\n例如，JavaScript 引擎如何实现 JavaScript 对象模型，它们使用哪些技巧来加速访问 JavaScript 对象的属性？事实证明，所有主要引擎都实现非常类似。\n\nECMAScript 规范本质上将所有对象定义为字典，字符串键映射到属性 `descriptor`。\n\n![js-object](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object.png)\n\n除了 `[[Value]]` 本身，规范定义了这些属性：\n\n- `[[Writable]]` 指属性是否赋值\n- `[[Enumerable]]` 指属性是否被枚举\n- `[[Configurable]]` 指是否可以删除该属性\n  `[[ ]]` 符号看起来很特别，表示这个属性不直接暴露给 JavaScript。你可以使用 `Object.getOwnPropertyDescriptor` API 获取的对象属性的属性描述符：\n\n```js\nconst object = { foo: 42 }\nObject.getOwnPropertyDescriptor(object, 'foo')\n// → { value: 42, writable: true, enumerable: true, configurable: true }\n```\n\n好的，这就是 JavaScript 定义对象的方式。数组呢？\n\n你可以将数组视为对象的特例。一个区别是数组对数组索引有特殊处理。这里数组索引是 ECMAScript 规范中的一个特殊术语。在 JavaScript 中，数组成员限制为 2³²−1 个。数组索引是该限制内的任何有效索引，即从 0 到 2³²−2 的任何整数。\n\n另一个区别是数组还有一个神奇的长度属性。\n\n```js\nconst array = ['a', 'b']\narray.length // → 2\narray[2] = 'c'\narray.length // → 3\n```\n\n在此示例中，数组在创建时的长度为 2，然后我们将另一个元素赋值给索引 2 处，长度自动更新。\n\nJavaScript 对 array 的定义类似 object。例如，包括数组索引在内的所有键名都明确表示为字符串。数组中的第一个元素存储在键名 `0` 下。\n\n![js-array-define](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-array-define.png)\n\n`length` 只是另一个不可枚举和不可删除的属性。\n\n当将元素添加到数组后，JavaScript 会自动更新 `length` 的 `[[value]]`\n\n![js-array-define-2](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-array-define-2.png)\n\n## 优化属性访问\n\n现在我们知道了 object 是在 JavaScript 中的定义，让我们深入研究 JavaScript 引擎如何有效地处理对象。\n\n纵观 JavaScript 程序，访问属性是目前最常见的操作。对于 JavaScript 引擎来说，快速访问属性是至关重要的。\n\n```js\nconst object = {\n  foo: 'bar',\n  baz: 'qux',\n}\n\n// Here, we’re accessing the property `foo` on `object`:\ndoSomething(object.foo)\n//\n```\n\n### Shapes\n\n在 JavaScript 程序中，多个对象具有相同的属性键是很常见，这些对象具有相同的 _shape_。\n\n```js\nconst object1 = { x: 1, y: 2 }\nconst object2 = { x: 3, y: 4 }\n// `object1` and `object2` have the same shape.\n```\n\n在具有相同 shape 的对象上访问相同的属性也很常见：\n\n```js\nfunction logX(object) {\n  console.log(object.x)\n  //          ^^^^^^^^\n}\n\nconst object1 = { x: 1, y: 2 }\nconst object2 = { x: 3, y: 4 }\n\nlogX(object1)\nlogX(object2)\n```\n\n考虑到这一点，JavaScript 引擎可以根据对象的形状优化对象属性访问。\n\n假设我们有一个具有属性 `x` 和 `y` 的对象，它使用我们之前讨论过的字典数据结构：它包含字符串形式的键，这些键指向它们各自的属性 `descriptor`。\n\n![js-object-2](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-2.png)\n\n如果你访问某个属性，例如 `object.y`，JavaScript 引擎在 `JSObject` 中查找键 `y`，然后加载相应的属性 `descriptor`，最后返回 `[[Value]]`。\n\n但是这些属性 `descriptor` 存放在内存的什么地方呢？我们应该将它们存储为 `JSObject` 的一部分吗？如果我们碰到更多具有这种 `shape` 的对象，那么把完整的属性相关信息存储在 `JSObject` 上是一种浪费，因为这些对象的属性名称是重复的。作为一种优化，引擎单独存储对象的 `shape`。\n\n![js-object-2-1](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-2-1.png)\n\n除了 `[[Value]]`，`Shape` 包含所有属性名称和 `descriptor`。`Shape` 包含一个偏移量，表示属性值在 `JSObject` 的偏移量，因此 JavaScript 引擎知道在哪里可以找到这些值。每个具有相同形状的 `JSObject` 都指向这个 `Shape` 实例。现在每个 `JSObject` 只需存储针对该对象的值了。\n\n![js-object-3](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-3.png)\n\n当我们有多个对象时，好处就很明显了。不管有多少对象，只要它们的形状相同，我们只需要存储一个 `shape` 和属性信息！\n\n所有 JavaScript 引擎都使用 `shape` 作为优化，但它们并不都称它们为 `shape`：\n\n- 学术论文称它们为 _Hidden Classes_（区分 JavaScript 类）\n- V8 称它们为 _Maps_（区分 JavaScript `Maps`）\n- Chakra 称它们为*Types*（区分 JavaScript 的变量类型和 `typeof`）\n- JavaScriptCore 称它们为 _Structures_\n- SpiderMonkey 称它们为 _Shapes_\n\n在整篇文章中，我们将继续使用术语 _shapes_。\n\n### shape 的转变链和 trees\n\n如果你有一个具有特定形状的对象，然后你给它添加了一个属性，会发生什么？JavaScript 引擎如何处理新的 `shape`？\n\n```js\nconst object = {}\nobject.x = 5\nobject.y = 6\n```\n\n这些 shape 在 JavaScript 引擎中形成所谓的转变链（_transition chains_）。这是一个例子：\n\n![js-object-4](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-4.png)\n\n该对象开始时没有任何属性，因此它指向空 `shape`。下一条语句添加属性 `x` 并赋值 `5`，因此 `shape` 转换为包含属性 `x`，并将值 `5` 添加到 `JSObject` 偏移量 0 处。下一行添加属性 `y`，因此又转换为包含 `x` 和 `y` 的另一个 `shape`，并将值 6 附加到 `JSObject` 偏移量 1 处。\n\n> 注意：添加属性的顺序会影响 `shape`。例如，`{ x: 4, y: 5 }` 的形状与 `{ y: 5, x: 4 }` 不同。\n\n我们也无需要为每个 `Shape` 存储完整的属性表。相反，每个 `Shape` 只需要知道它引入的新属性。例如，我们不必在最后一个 `shape` 中存储 `x` 的信息，因为它可以在链中的前面的位置找到。为了使这项工作有效，每个 `Shape` 都链接回其以前的 `shape`：\n\n![js-object-5](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-5.png)\n\n如果你访问 `o.x`，JavaScript 引擎会在 `shape` 链上查找属性 `x`，直到找到引入属性 `x` 的 `Shape`。\n\n但是，如果无法创建过渡链会怎样？例如，如果您有两个空对象，并为每个对象添加不同的属性，会怎样？\n\n```js\nconst object1 = {}\nobject1.x = 5\nconst object2 = {}\nobject2.y = 6\n```\n\n在这种情况下，我们用分叉，而不是链式，我们最终得到一个转变树（_transition tree_）：\n\n![js-object-6](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-6.png)\n\n在这里，我们创建了一个空对象 `a`，然后添加属性 `x`。最终得到一个 `JSObject` 和两个 `shape`\n\n再创建空对象 `b`，然后添加属性 `y`。我们最终得到两个 `shape` 链，总共三个 `shape`。这是否意味着我们总是从空 `shape` 开始？不必要。引擎对包含属性的对象字面量做了一些优化。假设我们从空对象字面量开始添加 `x`，或者有一个已经包含 `x` 的对象字面量：\n\n```js\nconst a = {}\na.x = 6\nconst b = { x: 6 }\n```\n\n在开始，我们从空的 `shape` 链接到含 `x` 的 `shape`。\n\n对于 `b`，直接创建包含 `x` 的 `shape` 而不是从一个空的 `shape` 开始。\n\n![js-object-7](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-7.png)\n\nBenedikt 的一篇博客 [Surprising polymorphism in React applications](https://medium.com/@bmeurer/surprising-polymorphism-in-react-applications-63015b50abc) 讨论了这些细节如何影响代码的性能。\n\n举个例子，一个 point 对象包含 `x`，`y`，`z` 3 个属性。\n\n```js\nconst point = {}\npoint.x = 4\npoint.y = 5\npoint.z = 6\n```\n\n按之前的学习，这会在内存中创建一个具有 3 个 `shape`（不包括空 `shape`）。当访问该对象的属性 `x` 时，JavaScript 引擎从链表尾向前查找有 `x` 的 `shape`。\n\n![js-object-8](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-8.png)\n\n当类似的操作多了，那将会非常慢。找到属性的时间是 $O(n)$，即与对象的属性数量成线性关系。为了加快搜索属性的速度，JavaScript 引擎添加了一个 `ShapeTable` 数据结构。这个 `ShapeTable` 是一个字典，将属性键映射到引入给定属性的各个 `Shape`。\n\n![js-object-9](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-9.png)\n\n等一下，现在又变成字典查找......当初就是用 `shape` 链优化字典查找！那么，为什么 `shape` 上还有优化呢？原因是 `shape` 启用了另一种称为内联缓存（_Inline Caches_）的优化。\n\n### Inline Caches (ICs)\n\n`shape` 背后的主要动机是 Inline Caches 或 ICs 的概念。ICs 是使 JavaScript 快速运行的关键要素！JavaScript 引擎使用 ICs 来存储有关在何处查找对象属性的信息，以减少昂贵的查找次数。\n\n例如函数 `getX`：\n\n![js-object-10](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-10.png)\n\n第一个 `get_by_id` 指令从第一个参数 (`arg1`) 加载属性 `x` 并将结果存储到 `loc0`。第二条指令返回我们存储到 `loc0` 的内容。\n\nJSC 还在 `get_by_id` 指令中嵌入了一个 Inline Cache，它由两个未初始化的 slot（N/A 和 N/A）组成。\n\n![js-object-11](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-11.png)\n\n现在假设我们调用 `getX` 并传参 `{ x: 'a' }`。那么该对象会有一个 `shape`。当第一次执行函数时，`get_by_id` 指令查找 `x` 的值。然后 ICs 会存储该对象的 `shape` 和属性的 `offset` 值\n\n![js-object-12](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-12.png)\n\n后续运行时，ICs 只需要比较 `shape`，如果和之前一样，就从存储的 offset 中加载值即可。具体来说，如果 JavaScript 引擎看到具有 IC 之前记录的形状的对象，它根本不再需要访问属性信息——相反，可以完全跳过昂贵的属性信息查找。这比每次都查找属性要快得多。\n\n![js-object-13](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-13.png)\n\n### 有效存储数组\n\n对于数组，通常存储的属性是数组索引，属性的值称为数组元素。为数组中的每个数组元素存储属性特性会浪费内存。相反，JavaScript 引擎使用数组索引属性在默认情况下是可写、可枚举和可配置的这一事实，并将数组元素与其他命名属性分开存储。\n\n例如 array 的存储形式\n\n```js\nconst array = ['#jsconfeu']\n```\n\n和对象类似，但值存在哪里呢？\n\n![js-object-14](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-14.png)\n\n每个数组都有一个单独的 `Elements`（_elements backing_）存储所有数组索引的属性值。JavaScript 引擎不必为每个索引存储属性特性，因为它们通常都是可写、可枚举和可配置的。\n\n![js-object-15](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-15.png)\n\n但是，如果更改数组索引的属性特性怎么办？\n\n```js\n// Please don’t ever do this!\nconst array = Object.defineProperty([], '0', {\n  value: 'Oh noes!!1',\n  writable: false,\n  enumerable: false,\n  configurable: false,\n})\n```\n\n上面的代码片段定义了一个名为 `0` 的属性（恰好是一个数组索引），并修改了属性特性。在这种边缘情况下，JavaScript 引擎将整个 `Elements` 存储字典。\n\n![js-object-16](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/js-object-16.png)\n\n即使只有一个数组元素具有非默认属性，整个数组的 `Elements` 也会进入这种缓慢且低效的模式。避免在数组索引上使用 `Object.defineProperty`！\n\n### 总结\n\n我们了解了 JavaScript 引擎如何存储对象和数组，以及形状和 ICs 如何帮助优化它们的常见操作。基于这些知识，我们确定了一些有助于提高性能的实用 JavaScript 编码技巧：\n\n- 总是以相同的方式初始化你的对象，所以它们不会有不同的 `shape`。\n- 不要乱用数组元素的 property 属性，这样可以高效地存储和操作它们。\n",
+   "mtime": 0.0
+  },
+  {
+   "id": "clha81the0005vimxrxuxhjip",
+   "slug": "if-disable-source-maps-in-live",
+   "title": "前端优化之是否关闭 sourceMap",
+   "category": null,
+   "attachment": null,
+   "ctime": 1651580040000.0,
+   "date": "05-03",
+   "readingTime": "1",
+   "nextArticle": null,
+   "brief": "建议前端构建开启 source maps，定位线上问题的技巧",
+   "content": "\n## 构建配置是否开启 sourceMap？\n\n看到一些前端性能优化的文章，都建议生产环境关闭 sourceMap，因为 sourceMap 会增大包体积，增加构建时间，不安全泄漏源码，这些都没问题。\n但是关掉 sourceMap，线上出现问题就很难定位了，所以我的建议是**构建配置开启 sourceMap**，部署时过滤掉或上传到内网存储，**不要部署到生产环境**。\n\n## 浏览器如何加载 sourceMap？\n\n以 Chrome 为例，打开 DevTools，开启 source maps\n\n![enable source map](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/if-disable-source-map-1.png)\n\n只要打开 DevTools，浏览器就会自动下载 source maps，否则不会。\n下载 source maps 时的 url 前缀默认和 js 静态资源的前缀一样。\n\n![load source maps](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/if-disable-source-map-2.png)\n\n浏览器自动解析 source maps 后，在 Source -> Page 就会有 webpack 目录。\n\n![Source -> Page](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/if-disable-source-map-3.png)\n\n## 只有 sourceMap，没有 sentry 之类工具时，如何定位线上问题？\n\n一种方法。如果 source maps url 和 js 静态资源的 CDN 域名相同，则可通过代理工具把 source maps 的请求转发到内网服务器，甚至转发到本地\n\n![以 whistle 为例](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/if-disable-source-map-4.png)\n\n## 关联\n\nSourceMapDevToolPlugin：更精细的配置生成的 source maps，例如加载 source maps 的 url\n\n> 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 0.0
+  },
+  {
+   "id": "clhbsv51d0002gyrno0zw1yd8",
+   "slug": "intersectionobserver-table-of-content",
+   "title": "使用 IntersectionObserver 实现目录",
+   "category": null,
+   "attachment": null,
+   "ctime": 1619568000000.0,
+   "date": "04-28",
+   "readingTime": "4",
+   "nextArticle": null,
+   "brief": "用 Intersection Observer API 实现文章目录，目录能跟随页面滚动而高亮标题",
+   "content": "\n## 介绍\n\n使用 Intersection Observer API 和 `scroll-padding` 实现一个文章目录，能自动跟随高亮目录标题，其中 scroll-padding 用在当点击目录时，使标题滚到合适的可视区域。\n\n## 现状\n\n`IntersectionObserver` 的 callback 执行时机：\n\n- target 元素在上边界离开和进入可视区域\n- target 元素在下边界离开和进入可视区域\n- 初始化或快速滚动时，多个 target 同时在可视区域\n- 非鼠标滚动交互造成的滚动\n- ……\n\n因此为了确定**什么时候**高亮**哪一个**目录标题，设定几个 case。\n\n## case 设计\n\n前提：把上边界作为基线，`threshold` 设为 1，root 是 `document`\n\n- case1: 向上滚动，到基线，变成不相交，active 当前标题\n- case2: 向下滚动，到基线，变成相交，active 上一个标题\n- case3: 初始化，`heading.getboundingClientRect().top` 离基线最近的 active 标题\n- case4: 点击目录，跳到 heading，直接 active，跳过 observe 处理\n- caseX: 其他不处理\n\n## 代码实现\n\n### 设置上边界和 `scroll-padding-top`\n\n```typescript\nconst baseLine = 156 // 上边界的基线位置\nconst distanceActionToCase1 = baseLine - 6 // scroll-padding-top，点击目录跳转后的标题位置视为 case1\nconst init = () => {\n  document.documentElement.style.scrollPaddingTop = `${distanceActionToCase1}px`\n}\n```\n\n![baseLine](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/io-toc.png)\n\n用前后的 `scrollTop` 判断滚动方向\n\n```ts\nconst observer = new IntersectionObserver(\n  (entries) => {\n    let prevScollTop = document.documentElement.scrollTop\n    const isScrollDown = prevScollTop > document.documentElement.scrollTop\n    const isScrollUp = !isScrollDown\n    prevScollTop = document.documentElement.scrollTop\n    // ...\n  },\n  {\n    threshold: [1],\n    root: document,\n    rootMargin: `-${baseLine}px 0px 0px 0px`, // 设置 rootMargin\n  }\n)\n```\n\n### 处理 case3\n\n比较 `IntersectionObserverEntry.boundingClientRect.top` 和 `baseLine` 的距离，确定哪个 `heading` 离基线最近\n\n```ts\nconst observer = new IntersectionObserver(\n  (entries) => {\n    // ...\n    let willActiveHeading: Element | null = null\n    let isInit = true\n    entries.forEach((entry) => {\n      const { top } = entry.boundingClientRect\n      if (isInit) {\n        if (\n          Math.abs(top - baseLine) <=\n          Math.abs(initClosestHeading.boundingClientRect.top - baseLine)\n        ) {\n          initClosestHeading = entry\n        }\n        return\n      }\n      // ...\n    })\n    if (isInit) {\n      const { hash } = location\n      if (hash) {\n        ;(\n          document.querySelector(`.toc a[href='${hash}']`) as HTMLAnchorElement\n        ).click()\n      } else {\n        initClosestHeading.target.dispatchEvent(new CustomEvent('active'))\n      }\n      isInit = false\n    }\n  }\n  // ...\n)\n```\n\n### 处理 case1 和 case2\n\n```ts\nconst observer = new IntersectionObserver(\n  (entries) => {\n    // ...\n    let willActiveHeading: Element | null = null\n\n    entries.forEach((entry) => {\n      if (entry.isIntersecting && isScrollDown) {\n        willActiveHeading = entry.target\n      } else if (!entry.isIntersecting && isScrollUp) {\n        willActiveHeading = entry.target\n      }\n    })\n  }\n  // ...\n)\n```\n\n### 处理 case4\n\n在点击跳转过程中，依然会触发 observer 的 callback\n\n```ts\nconst article = document.querySelector('.markdown-body')\nconst allHeadings = article?.querySelectorAll('h1,h2,h3,h4')\nallHeadings?.forEach((heading, index) => {\n  let a = findToc(heading)\n  a?.addEventListener('click', () => {\n    tocJumpTo = heading\n    tocJumpTo.dispatchEvent(\n      new CustomEvent('active', {\n        detail: 'cur',\n      })\n    )\n    prevScollTop = document.documentElement.scrollTop\n  })\n  heading.addEventListener('active', (e) => {\n    toc.forEach((t) => t.classList.remove('active-heading'))\n    if ((e as CustomEvent).detail === 'prev' && index !== 0) {\n      const prevA = findToc(allHeadings[index - 1])\n      prevA?.classList.add('active-heading')\n      return\n    }\n    a?.classList.add('active-heading')\n  })\n  observer?.observe(heading)\n})\n```\n\n完整代码（React）\nhttps://github.com/marsk6/marsk6.github.io/blob/master/src/components/Toc.tsx\n\n## 实现效果\n\n![实现效果](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/io-toc.gif)\n\n> 本博客 ([Hea的web博客](https://marsk6.github.io/)) 所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 0.0
+  },
+  {
+   "id": "cli7db5rf0006mse7w55uzwee",
+   "slug": "build-blog-with-nextjs",
+   "title": "用 Next.js 搭建个人博客",
+   "category": null,
+   "attachment": "cli7dave90004mse7n6xnep6e",
+   "ctime": 1601178480000.0,
+   "date": "09-27",
+   "readingTime": "4",
+   "nextArticle": "cli7e8agy000emse7h4gol4gx",
+   "brief": "next.js 是一个 React 框架，主打服务端渲染（SSR）和静态网页生成（SSG），因此可以用 next.js 搭建个人静态博客。",
+   "content": "\n现阶段有非常非常多的静态博客生成工具（[site generators](https://jamstack.org/generators/)），Hexo、VuePress、Docusaurus 等等，基本只需把 markdown 文件配置到指定目录，无需编写其他代码即可建站。\n\n本文记录一下使用 next.js 从 0 到 1 搭建一个博客网站的流程。\n\n## 初始化项目\n\n使用 blog-starter-typescript 作为模板创建一个项目\n\n`npx create-next-app my-blog --use-yarn --example \"https://github.com/vercel/next.js/tree/canary/examples/blog-starter-typescript\"`\n\n> 模版 [example](https://github.com/vercel/next.js/tree/canary/examples) 是个大仓库，包含了 next.js 与各种技术集成的样例\n\n## 目录结构\n\n```shell\n.\n├── @types\n├── README.md\n├── _posts # 博客 .md 文件\n│   ├── dynamic-routing.md\n│   ├── hello-world.md\n│   └── preview.md\n├── components\n├── lib # 解析 .md 文件，提取文章数据\n│   ├── api.ts\n│   ├── constants.ts\n│   └── markdownToHtml.ts\n├── next-env.d.ts\n├── package.json\n├── pages # blog 各个页面\n│   ├── _app.tsx # 自定义初始化页面\n│   ├── _document.tsx #自定义 html body\n│   ├── index.tsx\n│   └── posts\n├── postcss.config.js\n├── public\n├── styles\n├── tailwind.config.js\n├── tsconfig.json\n└── types\n```\n\n模版是简单的 blog 样例，包含读取解析 markdown 文件、加载文章数据、生成首页、生成 blog 文章页面。\n\n用到的 npm 包：\n\n- `gray-matter` 处理 yaml front matter\n- `remark` 解析 markdown，把 markdown 转成 ast\n- `remark-html` 把 ast 转成 html\n- `tailwindcss` 原子化样式 class，无需头疼组件 class 的命名\n\n## 生成页面\n\n有两种方式生成页面，在 pages 目录和使用 `getStaticPaths`\n\n### pages 目录\n\n生成的页面对应 pages 目录下的文件，页面的路由为文件路径名，例如 `pages/about.tsx`，则页面路由为 `/about`。\n\n一般项目的目录都会有 src 目录，所以 next.js 也支持 src/pages 目录。\n\n很明显，不可能为每篇 blog 文章都创建一个文件，那么就需用到**动态路由（dynamic routes）**。\n\n### getStaticPaths\n\n**动态路由**形如 `pages/posts/[slug].tsx`，然后就会生成 `posts/1`, `posts/2`，slug 可以理解为前端路由的路径参数 params。\n\n页面需定义 `getStaticPaths` 方法，必须返回 `params` 参数。\n\n```tsx\n// pages/posts/[slug].tsx\nconst Post = () => {...}\nexport default Post\n\nexport async function getStaticPaths() {\n  const posts = getAllPosts(['slug'])\n  return {\n    paths: posts.map((post) => {\n      return {\n        params: {\n          slug: post.slug,\n        },\n      }\n    }),\n  }\n}\n```\n\n## 获取数据\n\n### getStaticProps\n\n`getStaticProps` 会在服务端执行，因此可以使用 node api，读取文件系统，获取 markdown 内容。\n\n返回值会作为页面组件的 props，入参为 `getStaticPaths` 的返回值。\n\n```ts\nconst Post = ({ post, morePosts }: Props) => {\n  return <Layout>...</Layout>;\n};\n\nexport default Post;\n\nexport async function getStaticProps({ params }) {\n  const post = getPostBySlug();\n  const content = await markdownToHtml(post.content || '');\n\n  return {\n    props: {\n      post: {\n        ...post,\n        content,\n      },\n    },\n  };\n}\n```\n\n## 定制化\n\n在 pages 下还有 `_app.tsx` 和 `_document.tsx`，这两个文件用于定制化页面。\n\nnext.js 默认使用 `next/app` 初始化页面，`_app.tsx` 会替代 `next/app` 初始化页面，因此可以在 `_app.tsx` 放一些公共逻辑，公共的布局，导入样式等。\n\n```tsx\nimport { AppProps } from 'next/app';\nimport 'github-markdown-css/github-markdown-light.css';\nimport '../styles/index.css';\n\nimport Layout from '@/layout';\n\nexport default function MyApp({ Component, pageProps }: AppProps) {\n  return (\n    <Layout>\n      <Component {...pageProps} />\n    </Layout>\n  );\n}\n```\n\n同样，`_document.tsx` 用于为 html、body 做定制化\n\n```tsx\nimport { Html, Head, Main, NextScript } from 'next/document';\n// 必须导入 Html、Head、Main、NextScript，不能省略\nexport default function Document() {\n  return (\n    <Html>\n      <Head />\n      <body>\n        <Main />\n        <NextScript />\n      </body>\n    </Html>\n  );\n}\n```\n\n## 结语\n\n一个 blog 的原型基本就搭建起来了，剩余就是部署到静态托管服务上（Vercel、GitHub Page 等），另外可以参照 [example](https://github.com/vercel/next.js/tree/canary/examples)，与其他技术集成，继续美化 blog。\n\n## 参考链接\n\n- [Next.js 官方文档](https://nextjs.org/docs)\n- [学习 Next.js](https://nextjs.org/learn/foundations/about-nextjs?utm_source=next-site&utm_medium=nav-cta&utm_campaign=next-website)\n\n> 本博客 ([Hea的web博客](https://marsk6.github.io/)) 所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 0.0
+  },
+  {
+   "id": "cli7e8agy000emse7h4gol4gx",
+   "slug": "build-blog-with-headless-cms",
+   "title": "用 Headless CMS 管理博客",
+   "category": null,
+   "attachment": "cli7e7kz1000cmse7ouokz4ip",
+   "ctime": 1604401980000.0,
+   "date": "11-03",
+   "readingTime": "3",
+   "nextArticle": "clidauzp80002mscck6ht62i8",
+   "brief": "用 next.js 搭建了静态博客，还要做好博客的内容管理，headless cms 是一个很好的选择，利用其现成的 CURD 功能。简单介绍一个 headless cms - keystone，作为我的博客的内容管理器。",
+   "content": "\n## 背景\n\n上一篇 [使用 Next.js 搭建个人博客](https://marsk6.github.io/posts/build-blog-with-nextjs) 已经搭建起前端界面，但管理和组织博客内容还很原始，缺少持久化和分类统计，因此需要一个管理后台来管理博客内容，并提供 API 给前端页面调用。\n实现一个管理后台需要\n- 数据库表结构设计\n- 业务逻辑设计及实现（CRUD）\n- 接口设计及实现\n- 产品运营管理后台设计及开发\n- ...\n但我目前不想投入时间从 0-1 实现一个管理后台，因此这里选用 Headless CMS\n\n## 什么是 Headless CMS\n\n如果有了解 Headless Browser（无头浏览器，没有前端界面），那么也可以把 Headless CMS 理解为没有内容展示界面，只有管理后台的 CMS。那意味着同一套 api 服务多个终端。\n![](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/build-blog-with-headless-cms-1.png)\n\n## Keystone\n\nkeystone 和多数 Headless CMS 类似，提供一个管理后台界面和 GraphQL API 用于内容查询。\n\nkeystone 开源，有完善的文档，灵活的关系，强大的过滤功能。\n\n## 集成 keystone\n\n```shell\nyarn add @keystone-6/core\n```\n\n修改 `.gitignore`，添加\n\n```\n.keystone\n```\n\n更新 npm script\n\n```json\n\"scripts\": {\n  ...\n\t\"keystone:start\": \"keystone start\",\n  \"next:dev\": \"next dev -p 4000\",\n  \"postinstall\": \"keystone postinstall\",\n},\n\n```\n\n```shell\nyarn keystone:start\n```\n\n```shell\nyarn next:dev\n```\n\n## 使用 keystone\n\n创建 `keystone.ts`\n\n### 配置 Lists\n\n先定义一个实体，Post、User 都可以被设计成实体，多个实体组成 lists。\n\n定义 Post，包括 slug、title、tags 等字段（[fields](https://keystonejs.com/docs/fields/overview)）\n\n```javascript\nconst Post: Lists.Post = list({\n  fields: {\n    /* 字段名: 字段类型  */\n    slug: text({ isIndexed: 'unique' }),\n    title: text({ validation: { isRequired: true } }),\n    tags: relationship({\n      ref: 'Tag.posts',\n      many: true,\n      ui: { displayMode: 'select' },\n    }),\n  },\n});\n```\n\n![](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/build-blog-with-headless-cms-3.png)\n\n定义 Tag\n\n```JavaScript\nconst Tag = list({\n\tfields: {\n\t\tname: text(),\n\t\tposts: relationship({\n\t\t\tref: 'Post.tags',\n\t\t\tmany: true,\n\t\t\tui: { hideCreate: true },\n\t\t}),\n\t},\n})\n```\n\n最后加到 lists 上\n\n```javascript\nexport default config({\n\t...\n\tlists: { Post, Tag },\n})\n```\n\n![](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/build-blog-with-headless-cms-4.png)\n\n### 调用查询 API\n\nkeystone 对 GraphQL API 进行了封装，对外提供一套函数进行 CRUD\n\n```JavaScript\n{\n\tfindOne({ where: { id }, query }),\n\tfindMany({ where, take, skip, orderBy, query }),\n\tcount({ where }),\n\tcreateOne({ data, query }),\n\tcreateMany({ data, query }),\n\tupdateOne({ where: { id }, data, query }),\n\tupdateMany({ data, query }),\n\tdeleteOne({ where: { id }, query }),\n\tdeleteMany({ where, query }),\n}\n```\n\n调用方式 `query.<listName>`，`listName` 即实体名，例如 `query.Post`、`query.Tag`\n\n获取所有文章\n\n```javascript\nimport { query } from '.keystone/api'; // .keystone 会自动生成\n\nexport async function getAllPosts() {\n  const posts = await query.Post.findMany({\n    orderBy: [{ ctime: 'desc' }],\n    query: 'slug title tags { name } ctime date',\n  });\n  return posts;\n}\n```\n\n### field - relationships\n\nrelationships 是实体的一种 field，用于在不同实体 field 之间建立关联关系\n例如一篇博文会包含 date，tag、category、author 等元信息，当要分开管理时就可以用到 relationships\n例如 Post 可以关联多个 Tag，一个 author 可以有多个 Post\n\n```ts\nconst Post: Lists.Post = list({\n  fields: {\n    tags: relationship({\n      ref: 'Tag.posts',\n      many: true,\n    }),\n  },\n});\n```\n\n![](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/build-blog-with-headless-cms-5.png)\n\nTag 也可以关联多个 Post\n\n```ts\nconst Tag = list({\n  fields: {\n    name: text(),\n    posts: relationship({\n      ref: 'Post.tags',\n      many: true,\n    }),\n  },\n});\n```\n\n![](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/build-blog-with-headless-cms-2.png)\n\n这样就可以通过 keystone 的 api 获取 tag 的种类和一篇 post 关联了哪些 tag 了\n\n## 参考\n\n- [keystone 与 nextjs 集成](https://keystonejs.com/docs/walkthroughs/embedded-mode-with-sqlite-nextjs)\n\n> 本博客所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 0.0
+  },
+  {
+   "id": "clidauzp80002mscck6ht62i8",
+   "slug": "deploy-blog-to-github-pages",
+   "title": "用 Github Pages 部署静态博客",
+   "category": null,
+   "attachment": "clidas0ym0000msccwmlpwefp",
+   "ctime": 1611905340000.0,
+   "date": "01-29",
+   "readingTime": "2",
+   "nextArticle": "clipr3teg0006msp1dsyjb857",
+   "brief": "github pages 是 github 提供的免费静态文件托管服务，可以用来部署静态博客。本文介绍用 next.js 生成的静态博客，部署到 github pages 的过程",
+   "content": "\nGithub Pages 是 Github 提供的免费静态文件托管服务，可以用来部署静态博客。\n\n## 创建仓库\n\n在 Github 上新建一个仓库 `New repository`\n\n![[deploy-blog-to-github-pages.png|新建仓库]]\n\n仓库名字必须是 `<user>.github.io`。设置仓库可见性，要使用 Github Pages，可见性必须是 `Public`\n\n![[deploy-blog-to-github-pages-1.png|配置仓库]]\n\n## 设置 Github Pages\n\n![[deploy-blog-to-github-pages-2.png|设置 github page]]\n\n你可以先创建一个 `gh-pages` 分支（后面部署会用到）\n把 nextjs blog 的构建输出推到 `gh-pages` 分支，分支内的文件目录结构会成为网站的路由路径\n对非 Jekyll 项目，构建输出的根目录还要有 `.nojekyll` 文件（确保静态资源能正确加载）\n\n![[deploy-blog-to-github-pages-3.png|blog 的构建输出]]\n\n如果是 Mac/Linux 用户，在项目 package.json 可添加\n\n```json\n\"postbuild\": \"touch ./<输出目录名>/.nojekyll\"\n```\n\n这时可以访问博客了\n\n## 用 Github Action 部署\n\n上面的步骤是我在本地构建并手动推到 `gh-pages` 分支，但更好的方式是通过 Github Action 自动化部署。\n\n在项目中创建 `.github/workflows/publish.yaml`\n\n```yaml\nname: GitHub Actions Build and Deploy Demo\non:\n  push:\n    branches:\n      - master # 当 master 分之有更新时自动构建部署\npermissions:\n  contents: write\njobs:\n  build-and-deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Checkout 🛎️\n        uses: actions/checkout@v3 # clone 项目代码\n      - name: Cache\n        uses: actions/setup-node@v3 # 设置缓存\n        with:\n          cache: 'yarn'\n      - name: build\n        run: | # 串行执行构建命令\n          yarn\n          yarn build\n      - name: Build and Deploy # 部署到 github pages\n        uses: JamesIves/github-pages-deploy-action@v4 # 用 JamesIves/github-pages-deploy-action 这个 action\n        with:\n          folder: out # nextjs blog 的构建输出目录\n          token: ${{ secrets.ACCESS_TOKEN }} #  为了推到你项目下的 gh-pages 分支，需要你的 github token\n```\n\n创建 ACCESS_TOKEN\n\n1. https://github.com/settings/tokens 记下创建的 token\n2. 设置 ACCESS_TOKEN\n\n![[deploy-blog-to-github-pages-5.png|secrets.ACCESS_TOKEN 配置]]\n\n代码推送到 master 后，就会触发构建部署\n\n![[deploy-blog-to-github-pages-4.png|运行 action]]\n\n## 关联\n\n[创建 GitHub Pages 站点 - GitHub 文档](https://docs.github.com/zh/pages/getting-started-with-github-pages/creating-a-github-pages-site)\n\n> [本博客](https://marsk6.github.io/) 所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 1660224480000.0
+  },
+  {
+   "id": "clipr3teg0006msp1dsyjb857",
+   "slug": "separate-keystone-from-nextjs-blog",
+   "title": "CMS 和 Nextjs 博客分离部署",
+   "category": null,
+   "attachment": "clipqvnas0004msp18lq0nn9i",
+   "ctime": 1615731060000.0,
+   "date": "03-14",
+   "readingTime": "5",
+   "nextArticle": "clhbsv51d0002gyrno0zw1yd8",
+   "brief": "keystone 和 nextjs 博客所有内容（前端，CMS，文章数据库）都在同一个仓库，不好维护，需要拆分仓库，通过 github action 全静态部署，在博客的 github action runner 中先启动 keystone 服务器，再运行博客构建。",
+   "content": "\n## 前言\n\n前文讲了我的静态博客集成 keystone 来管理文章内容，所有内容（前端，CMS，文章数据库）都在同一个仓库。\n\n但这样对部署和更新文章很不友好，存在频繁切换分支保存开发中的功能和新文章内容，不注意就会把测试的内容带到线上，过多回滚等问题。\n\n因此为了减少维护的成本，对仓库进行拆分，做前后端分离，通过 github action 全静态部署。\n\n## 拆分仓库\n\n两套代码是独立，没有相互依赖，都可以单独运行，单独部署。那分开后前端如何从 keystone 获取数据？\n\n之前用 keystone 的 context api，不用启动 http 服务器，但这种方式有问题 [Error: Your schema.prisma could not be found](https://www.prisma.io/docs/guides/other/troubleshooting-orm/help-articles/nextjs-prisma-client-monorepo)。\n\n无法使用 context api，那就用 keystone 的 http 接口。\n\n代码拆分为 `nextjs-blog` 和 `blog-admin`\n\n1. 在 `nextjs-blog` 中安装 `@apollo/client`\n\n```shell\nyarn add @apollo/client graphql\n```\n\n1. 初始化 `graphql` 客户端\n\n```js\nimport { ApolloClient, InMemoryCache, gql } from '@apollo/client';\n\nconst client = new ApolloClient({\n  uri: 'http://localhost:3000/api/graphql',\n  cache: new InMemoryCache(),\n  // Enable sending cookies over cross-origin requests\n  credentials: 'include',\n});\n```\n\n1. 使用 http 接口\n\n对照 `blog-admin` 下的 `schema.graphql`，把 context api 查询修改为 graphql api\n\n```js -{1-6} +{8-25}\nexport async function getAllTags() {\n  const tags = await query.Tag.findMany({\n    query: 'name posts { title slug }',\n  });\n  return tags;\n}\n\nexport async function getAllTags() {\n  const {\n    data: { tags },\n  } = await client.query({\n    query: gql`\n      query {\n        tags {\n          name\n          posts {\n            title\n            slug\n          }\n        }\n      }\n    `,\n  });\n  return tags;\n}\n```\n\n如果担心 gql 语句写错了，可以打开 `http://localhost:3000/api/graphql` 先验证下。\n\n## 修改部署配置\n\n我没把 keystone 部署到云服务器，打算在 `nextjs-blog` Github Actions 的 runner 中先启动 keystone，再构建生成博客。\n\n### 修改 blog-admin 部署配置\n\n1. 增加 keystone 服务器 health check\n\n添加 http 健康检查 `bin/check.sh`，用来检测 keystone http 服务器有没有启动成功。\n\n```shell\n#!/bin/sh\nCHECK_PORT=3000\n\necho \"[CHECK INFO] $(date '+%Y-%m-%d %H:%M:%S') check http service\"\n\nhttp_code=`curl -s --connect-timeout 2 -o /dev/null -w \"%{http_code}\" http://localhost:$CHECK_PORT`\n\nif [ $http_code == 200 ] || [ $http_code == 302 ]\nthen\n    echo \"[CHECK INFO] check success $http_code\"\n    exit 0\nelse\n    echo \"[CHECK ERROR] check error $http_code\"\n    exit 2\nfi\n```\n\n```json title=package.json +{2-5}\n  \"scripts\": {\n    \"keystone:build\": \"NODE_ENV=production keystone build\",\n    \"keystone:start\": \"NODE_ENV=production keystone start\",\n    \"deploy\": \"yarn keystone:build && yarn keystone:start\",\n    \"healthcheck\": \"bash ./bin/check.sh\",\n  },\n```\n\n1. 修改 github action 配置\n\n当博客数据有修改时，通过 `blog-admin` 的 GitHub Actions 触发 `nextjs-blog` 自动部署。\n\n```yaml\nname: GitHub Actions Build and Deploy\non:\n  push:\n    paths:\n      - app.db # 当 app.db 有变动时触发 action\npermissions:\n  contents: write\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Repository Dispatch\n        uses: peter-evans/repository-dispatch@v2 # 触发叫 repository_dispatch 的 webhook 事件\n        with:\n          token: ${{ secrets.ACCESS_TOKEN }}\n          repository: marsk6/marsk6.github.io\n          event-type: admin-update-event # 需要 dispatch 的事件类型\n```\n\n### 修改 nextjs-blog 部署配置\n\n先启动 keystone http 服务器，再执行 blog 构建。\n\n1. 修改 `nextjs-blog` 构建脚本\n\n创建 `build.ts`，先用 `child_process` 把 keystone 服务器跑起来，再执行 `yarn next:build`。\n\n```ts title={build.ts}\nimport execSh from 'exec-sh';\nlet count = 0;\n\n/**\n * 判断 keystone 是否启动成功\n */\nconst isAdminRun = () => {\n  return new Promise((resolve, reject) => {\n    const timer = setTimeout(() => {\n      execSh('yarn healthcheck', { cwd: './admin' }, (err) => {\n        if (err) {\n          if (count === 5) {\n            reject(err);\n          } else {\n            count++;\n            resolve(isAdminRun());\n          }\n        }\n        resolve('');\n      });\n      clearTimeout(timer);\n    }, 2000);\n  });\n};\nconst main = async () => {\n  console.log('---------------- start admin ----------------');\n  // 启动 keystone 服务器\n  const childProcess = execSh('yarn keystone:start', { cwd: './admin' });\n\n  await isAdminRun();\n\n  console.log('---------------- to next deploy ----------------');\n\n  // 构建博客\n  await execSh.promise('yarn next:build');\n  console.log('---------------- finish build ----------------');\n  // 关闭 keystone 服务器\n  childProcess.kill();\n};\n\nmain();\n```\n\n![[separate-keystone-from-nextjs-blog.png|构建流程]]\n\n```json title={package.json} +{2}\n  \"scripts\": {\n    \"build\": \"ts-node --transpileOnly ./script/build.ts\",\n  }\n```\n\n1. 修改 github action 配置\n\n```yaml\nname: GitHub Actions Build and Deploy Demo\non:\n  push:\n    branches:\n      - master\n  repository_dispatch: # 监听 blog-admin 发出的 repository_dispatch 事件\n    types: [admin-update-event] # 监听 dispatch 的事件类型 admin-update-event\npermissions:\n  contents: write\njobs:\n  build-and-deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - name: checkout blog repo\n        uses: actions/checkout@v3 # 默认拉取当前的仓库，即 nextjs-blog\n      - name: checkout admin repo\n        uses: actions/checkout@v3\n        with:\n          repository: marsk6/blog-admin # 拉取 blog-admin 的仓库\n          path: admin # 放到 nextjs-blog/admin 的路径下\n      - name: cache admin\n        uses: actions/setup-node@v3\n        with:\n          cache: 'yarn'\n      - name: install blog deps\n        run: |\n          pwd\n          yarn\n      - name: install admin deps\n        run: |\n          yarn --cwd ./admin\n      - name: build admin # 构建 blog-admin\n        run: |\n          yarn --cwd ./admin keystone:build\n      - name: build blog # 执行启动 keystone http 服务器，构建 nextjs-blog 的脚本\n        run: |\n          yarn build\n      - name: deploy blog # 部署到 github-pages\n        uses: JamesIves/github-pages-deploy-action@v4\n        with:\n          folder: out\n          token: ${{ secrets.ACCESS_TOKEN }}\n```\n\n![[separate-keystone-from-nextjs-blog-1.png|blog github action 流程]]\n\n## 关联\n\n[Repositories - GitHub Docs](https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-dispatch-event)\n\n> [本博客](https://marsk6.github.io/) 所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 1652140800000.0
+  },
+  {
+   "id": "cljnpqu7w0004mxkovfh49c86",
+   "slug": "ignore-file-with-jianguoyun-sync",
+   "title": "在坚果云设置文件同步过滤规则",
+   "category": null,
+   "attachment": "cljnpo3pe0000mxkoaq1q4dj6",
+   "ctime": 1656400020000.0,
+   "date": "06-28",
+   "readingTime": "0",
+   "nextArticle": "clo42laad0004mxsg954b79u2",
+   "brief": "用坚果云同步笔记，设置同步规则，过滤不需要上传同步的文件",
+   "content": "\n## 前言\n\n我使用 obsidian 和坚果云管理自己的笔记，但 obsidian 的 `.obsidian/workspace.json` 经常和云端的文件发生冲突，产生一堆 `NSConflict.json` 文件。因此需要设置坚果云文件同步规则，不同步 `.obsidian/workspace.json`。\n\n## 在 Mac/Linux 上设置\n\n打开 `~/.nutstore/db`\n\n```shell\nopen ~/.nutstore/db\n```\n\n修改 `customExtRules.conf`，没有就新建一个。\n\n```txt title={customExtRules.conf}\n# 添加过滤规则\n.obsidian/workspace.json\n.obsidian/workspaces.json\n```\n\n重启坚果云就会生效。\n\n## 在 Windows 上设置\n\n打开 `%APPDATA%\\Nutstore\\db`，也是相同的修改。\n\n> [本博客](https://marsk6.github.io/) 所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 1656469320000.0
+  },
+  {
+   "id": "cljy34u3g0002mx5vlohhjcqq",
+   "slug": "setState-callback-react-hooks",
+   "title": "react hooks setState 支持 callback",
+   "category": null,
+   "attachment": "cljy3307t0000mx5vu1wyssrr",
+   "ctime": 1657530300000.0,
+   "date": "07-11",
+   "readingTime": "1",
+   "nextArticle": "clm3mkej80006gyn8b9flc7zm",
+   "brief": "class component 的 setState 支持第二个参数 callback，更新完成后会执行回调，react hooks 的 setState 没有提供类似的功能，因此自定义一个 hook，实现类似的 callback 功能。",
+   "content": "\n对于 class component，`this.setState(nextState, callback)` 第二个参数 callback，组件更新完成后会执行回调。\n但 react hooks 没有提供类似的功能，因此自定义一个 hook，实现类似的 callback 功能。\n\n```ts title={useCallbackState.ts}\nimport {\n  SetStateAction,\n  useCallback,\n  useEffect,\n  useRef,\n  useState,\n} from 'react';\n\nexport default function useCallbackState<S>(initialState: S | (() => S)) {\n  const cbRef = useRef<Function[]>([]);\n  const [state, setData] = useState(initialState);\n  useEffect(() => {\n    if (cbRef.current.length > 0) {\n      cbRef.current.forEach((cb) => cb());\n      cbRef.current = [];\n    }\n  }, [state]);\n  const setState = useCallback(\n    (nextState: SetStateAction<S>, callback?: Function) => {\n      callback && cbRef.current.push(callback);\n      setData(nextState);\n    },\n    []\n  );\n  return [state, setState] as const;\n}\n```\n\n使用。注意 callback 的作用域链，callback 取到的 state 是旧的。\n\n```ts\nconst Foo = () => {\n  const [state, setState] = useCallbackState(0);\n  function handleClick() {\n    const nextState = state + 1;\n    setState(nextState, () => console.log(nextState))\n  }\n\n  return (\n    <button onClick={handleClick}>+</button>\n  )\n}\n\n```\n\n> [本博客](https://marsk6.github.io/) 所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 1657531080000.0
+  },
+  {
+   "id": "clm3mjz050002gyn807mtyz1d",
+   "slug": "CSS-color-function-HSL",
+   "title": "CSS Color - HSL 函数",
+   "category": null,
+   "attachment": "clm3mjvk40000gyn80k1ai74r",
+   "ctime": 1639236120000.0,
+   "date": "12-11",
+   "readingTime": "2",
+   "nextArticle": null,
+   "brief": "对开发者更友好的 css 颜色函数 - HSL，HLS 的每个值都有语义，由 h(色相)、s(饱和度)、l(亮度) 组成，可以让开发者通过值去判断展示的颜色。",
+   "content": "\n## 背景\n\nCSS 色彩 `color` 可以使用 3 种值定义：关键字、RGB 立体坐标系、HSL 圆柱坐标系。\n\n关键字，如 `red`、`green`，颜色语义明确，但关键字数量有限，无法表达所有的颜色。\n\nRGB 立体坐标系，即立体直角坐标系，由 3 个 16 进制值组成，`rgb(255, 255, 255)` 或 `#FFFFFF`，16 进制值对计算机友好，开发者就很难推测和调整颜色对应的值。\n\n![[css-hsl-2.png]]\n\nHSL 圆柱坐标系，即立体极坐标系，由 h(色相)、s(饱和度)、l(亮度) 组成，`hsl(60, 100%, 50%)`，相比 RGB 的优点是更加直观：你可以估算你想要的颜色，然后微调。它也更易于创建相称的颜色集合。（通过保持相同的色相并改变亮度/暗度和饱和度）。\n\n![[css-hsl-4.png|420]]\n\n\n\n## hsl 圆柱色彩体系\n\n| 值                    | 描述                                             |\n| --------------------- | ------------------------------------------------ |\n| hue - 色相            | 定义色相，0 或 360 为红，120 为绿，240 为蓝      |\n| saturation - 饱和度 % | 定义饱和度，越高颜色越纯，越低则越淡，0% 为灰色  |\n| lightness - 亮度 %    | 定义亮度，0% 为黑色，100% 为白色，50% 为黑白之间 |\n\n### 色相（h）\n\n把颜色变成 360° 圆，0 或 360 为红，120 为绿，240 为蓝。\n![[css-hsl-1.jpeg]]\n\n### 饱和度（s）\n\n0% - 100%，越高颜色越纯，越低则越淡，0% 为灰色。\n\n0% 为灰色可理解为没有颜色，此时亮度为 50%，显示灰色。\n![[css-hsl-3.png]]\n### 亮度（l）\n\n0% 为黑色，100% 为白色，50% 为黑白之间。\n\n如果饱和度为 0%，50% 黑白之间为显示灰色\n\n## hsl 函数\n\nCSS 中颜色值可以使用 hsl 函数，例如按照色相圆盘，`color: hsl(60, 100%, 50%)` 为黄色。\n\n使用 hsl 函数，可以让开发者更容易推测值的颜色。\n\n## 关联\n\n- [RGB 颜色空间 - Win32 apps | Microsoft Learn](https://docs.microsoft.com/zh-cn/windows/win32/wcs/rgb-color-spaces)\n- [圆柱坐标系 - 维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%9C%93%E6%9F%B1%E5%9D%90%E6%A8%99%E7%B3%BB)\n- [Why should you use HSL color representation in CSS?](https://tsh.io/blog/why-should-you-use-hsl-color-representation-in-css/)\n\n> 本博客 ([marsk6](https://marsk6.github.io/)) 所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n\n----\n",
+   "mtime": 1639293840000.0
+  },
+  {
+   "id": "clm3mkej80006gyn8b9flc7zm",
+   "slug": "react-native-popup-hook",
+   "title": "react native 弹窗浮层的管理方式",
+   "category": null,
+   "attachment": "clm3mkaq80004gyn88y02hapv",
+   "ctime": 1683803880000.0,
+   "date": "05-11",
+   "readingTime": "5",
+   "nextArticle": null,
+   "brief": "Dialog，BottomDrawer，Modal，Tooltip 等各种浮层弹窗虽然在表现上不一样，但他们的状态管理逻辑，如打开浮层，关闭浮层，层叠浮层等逻辑相差不大，因此可以实现一个 hook，抽取共同的逻辑，子组件间用 context 共享公共的浮层操作方法。",
+   "content": "\n## 背景\n\n在 react native 需求开发中，经常遇到浮层的需求，即 `Dialog`，`BottomDrawer`，`Modal` 等浮层组件，但内部的公共组件库总是难以满足需求，例如浮层层叠，操作浮层的方式，获取操作的结果等，需要二次开发。\n\n### 现有浮层实现相似点\n\n研究下了内部组件库的实现，实现上有相同，都有相似的展示浮层，关闭浮层的状态管理逻辑，\n\n```tsx title={Dialog.tsx} *{2,16}\nexport class Dialog extends PureComponent {\n  static showPopup = (config) => { // 👈🏻 操作显示浮层\n    return new Promise((resolve) => {\n      const inst = Dialog.instances[pageId];\n      if (inst) {\n        inst.setState({\n          show: true,\n          config,\n        });\n      }\n    });\n  };\n\n  handleDismiss = (result) => {\n    // 👇🏻 隐藏浮层\n    this.setState({ show: false }, () => this.resolve?.({ action: result }));\n  };\n\n  render() {\n    const { show } = this.state;\n    if (!show) {\n      return null;\n    }\n    return (\n      <View>\n        <TouchableOpacity onPress={() => this.handleDismiss(Dialog.Action.Cancel)}>\n          <Text>Cancel</Text>\n        </TouchableOpacity>\n      </View>\n    );\n  }\n}\n```\n\n### 现有浮层实现不同点\n\n使用上又有些不同，`Dialog` 渲染的位置会放在顶层组件树，然后在子组件内部通过 `Dialog.showPopup(config)` 配置并显示 `Dialog`\n\n```tsx title={Screen.tsx} *{7}\nfunction Screen() {\n  return (\n    <View>\n      <View>\n        <Child />\n      </View>\n      <Dialog /> {/* 👈🏻 在这里渲染 Dialog */}\n    </View>\n  );\n}\n```\n\n```tsx title={Child.tsx} *{3}\nfunction Child() {\n  const handlePress = () => {\n    const result = await Dialog.showPopup(config); // 👈🏻 配置并显示 Dialog，获取操作 Dialog 的结果\n  };\n  return <View onPress={handlePress}>{/* ... */}</View>;\n}\n```\n\n`BottomDrawer`，`Modal` 放到组件树，当普通组件引用，其实为了覆盖整个屏幕，也必须放在页面的顶层组件树中\n\n这个方式每个页面都要维护一套展示和隐藏的状态逻辑\n\n```tsx title={Screen.tsx} *{7-9}\nfunction Screen() {\n  return (\n    <View>\n      <View>\n        <Child />\n      </View>\n      <BottomDrawer show={state.showContent1}>{/* content */}</BottomDrawer>\n      <BottomDrawer show={state.showContent2}>{/* content */}</BottomDrawer>\n      <Modal visible={state.visible}>{/* content */}</Modal>\n    </View>\n  );\n}\n```\n\n### 存在问题\n\n这样维护起来有些混乱，每次需求开发都要把组件二次改造一下，要么页面存在大量展示隐藏的状态逻辑，使用方式也不一致，多次迭代后就得花更多时间学习研究组件怎么用，要么新的开发者又重新写一套。\n\n实际打开浮层，层叠展示多个浮层，关闭浮层，它们的状态管理逻辑基本一样，只是在表现层不一样，因此可以自定义一个 hook，提取它们的共同逻辑。\n\n## 代码实现\n\n用方法的形式操作浮层，提供 `open`，`close`，`closeAll` 3 个方法\n\n```typescript title={usePopupStack.ts}\nimport { ReactNode, useContext, useEffect, useMemo, useRef } from 'react';\nimport { Keyboard, Platform, BackHandler } from 'react-native';\nimport useCallbackState from './useCallbackState';\n\ntype TPopUpInfo = {\n  shouldShow: boolean;\n  component: ReactNode;\n  onClose: () => void;\n};\n\nexport type TManageStack = {\n  open: (renderComponent: (onClose: () => void) => ReactNode) => number;\n  close: (popUpId: number) => void;\n  closeAll: () => void;\n};\n\n/**\n * Dialog, BottomDrawer, Modal etc.\n */\nexport const usePopupStack = () => {\n  const [list, setList] = useCallbackState<TPopUpInfo[]>([]);\n  const popUpMap = useRef<Map<number, TPopUpInfo>>(new Map());\n  const manageStack = useMemo((): TManageStack => {\n    return {\n      open: (renderComponent) => {\n        const popUpId = Date.now();\n        const onClose = () => {\n          // 快速点击会执行多次\n          if (popUpMap.current.get(popUpId)) {\n            popUpMap.current.get(popUpId)!.shouldShow = false;\n            setList(cloneList(popUpMap.current), () => {\n              popUpMap.current.delete(popUpId);\n            });\n          }\n        };\n        const component = renderComponent(onClose);\n        popUpMap.current.set(popUpId, {\n          shouldShow: true,\n          component,\n          onClose,\n        });\n        Keyboard.dismiss();\n        setList(cloneList(popUpMap.current)); // 👈🏻 不能渲染 ref，把 list clone 存到 state 上\n        return popUpId;\n      },\n      close: (popUpId: number) => {\n        popUpMap.current.get(popUpId)?.onClose();\n      },\n      closeAll: () => {\n        [...popUpMap.current.values()].forEach((popup) => {\n          popup.onClose();\n        });\n      },\n    };\n  }, [setList]);\n\n  useEffect(() => {\n    // 监听 android 的实体返回键，关闭 pop up\n    if (Platform.OS === 'android') {\n      BackHandler.addEventListener('hardwareBackPress', function () {\n        if (popUpMap.current) {\n          const topPopupId = Array.from(popUpMap.current.keys()).pop();\n          if (topPopupId) {\n            manageStack.close(topPopupId);\n          }\n        }\n      });\n    }\n    return () => {\n      if (Platform.OS === 'android') {\n        BackHandler.removeEventListener('hardwareBackPress');\n      }\n    };\n  }, [manageStack]);\n\n  return { manageStack, list };\n};\n```\n\n### 用法\n\n每种浮层都用 `usePopupStack` 管理，用 context 往下传递 `open`，`close`，`closeAll` 3 个方法\n\n```tsx title={BottomDrawerContextProvider.tsx}\nimport React, { createContext, PropsWithChildren } from 'react';\nimport BottomDrawer from '//ButtomDrawer';\nimport { usePopupStack } from './usePopupStack';\nimport type { TManageStack } from './usePopupStack';\n\nexport const BottomDrawerContext = createContext({} as TManageStack);\n\nexport const BottomDrawerContextProvider: React.FC<PropsWithChildren> = (props) => {\n  const { manageStack: bottomDrawer, list: drawerList } = usePopupStack();\n\n  return (\n    <BottomDrawerContext.Provider value={bottomDrawer}>\n      {props.children}\n      {drawerList.map(\n        // 渲染 open 的 BottomDrawer\n        ({ component, shouldShow, onClose }, index) => (\n          <BottomDrawer\n            key={index}\n            shouldShow={shouldShow}\n            onDismiss={onClose}\n          >\n            {component}\n          </BottomDrawer>\n        )\n      )}\n    </BottomDrawerContext.Provider>\n  );\n};\n```\n\n浮层组件都放到顶层组件树渲染，这样浮层可以覆盖整个页面。\n\n```tsx title={Screen.tsx}\nfunction Screen() {\n  <BottomDrawerContextProvider>\n    <DialogContextProvider>\n      <View>...</View>\n    </DialogContextProvider>\n  </BottomDrawerContextProvider>;\n}\n```\n\n子组件从 context 获取 `open`，`close`，`closeAll` 方法\n\n```tsx title={Child.tsx}\nfunction Child() {\n  const bottomDrawer = useContext(BottomDrawerContext);\n  const handle = () => {\n    const drawerId = bottomDrawer.open((onClose) => {\n      return (\n        <View>\n          <Button onPress={onClose}>Close</Button>\n        </View>\n      );\n    });\n  };\n\n  useEffect(() => {\n    return () => {\n      bottomDrawer.close(drawerId);\n    };\n  }, []);\n\n  return <></>;\n}\n```\n\n这样，抽取一个 hook，每个组件不用维护浮层的状态，使用也简洁清晰。\n\n> [本博客](https://marsk6.github.io/) 所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 1683879240000.0
+  },
+  {
+   "id": "clo42laad0004mxsg954b79u2",
+   "slug": "set-env-var-in-node-project",
+   "title": "node 项目读取环境变量",
+   "category": null,
+   "attachment": "clo42kn2e0000mxsg3aqn20i9",
+   "ctime": 1697596560000.0,
+   "date": "10-18",
+   "readingTime": "1",
+   "nextArticle": null,
+   "brief": "使用 `.env` 和 `dotenv` 配置管理 node 项目的环境变量",
+   "content": "\nnode 项目从 `process.env` 读取环境变量时，`process.env` 有哪些来源？\n\n### 命令行\n\n使用 `cross-env` 处理跨平台环境变量设置。\n\n```json title={package.json}\n{\n  \"scripts\": {\n    \"dev\": \"cross-env MY_ENV=hello node ./index.js\",\n    \"start\": \"cross-env MY_ENV=hello webpack\"\n  }\n}\n```\n\n> 在 mac 下可以直接设置局部变量，`{ \"dev\": \"MY_ENV=hello node ./index.js\" }`。\n\n### `.env` 文件\n\n环境变量配置在项目根目录下的 `.env`。\n\n```shell title={.env}\nPORT=8080\nMY_ENV=live\n```\n\n安装 `dotenv`，`npm install dotenv --save`。\n\n`dotenv` 会自动读取项目根目录下的 `.env` 到 `process.env`，并且不会覆盖已存在 `process.env` 上的环境变量。\n\n```javascript title={app.js}\nrequire('dotenv').config();\nconst http = require('http');\nconst port = parseInt(process.env.PORT, 10) || 5000;\nhttp\n  .createServer((request, response) => {\n    response.writeHead(200, {\n      'Content-Type': 'text/plain',\n    });\n    response.write(process.env.MY_ENV);\n    response.end();\n  })\n  .listen(port);\n```\n\n按照 `dotenv` 的最佳实践：\n\n- 应该把 `.env` 加到 `.gitignore`，因为每个环境的配置不同，还可能包含数据库密钥等；\n- 不要按部署环境划分 `.env.test`、`.env.staging` 等环境变量文件，因为难以扩展，更多部署环境就需要添加更多的配置文件。\n\n### shell\n\n如果在执行 node 脚本前，还需为其他的 shell 脚本设置环境变量。\n\n```shell\nset -o allexport # 👉 把后面创建的变量标记为导出，即导出为环境变量\n. ./.env\nset +o allexport # 关闭 👆 这种模式\n```\n\n### 关联\n\n1. [Node Environment Variables: Process env Node](https://www.knowledgehut.com/blog/web-development/node-environment-variables)\n\n> [本博客](https://marsk6.github.io/) 所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 1697616240000.0
+  },
+  {
+   "id": "clqytwj110004mxc2rca6mof8",
+   "slug": "blog-first-paint-issue",
+   "title": "blog 首页样式闪烁问题排查",
+   "category": null,
+   "attachment": "clqytwgha0002mxc25qswiyug",
+   "ctime": 1703821560000.0,
+   "date": "12-29",
+   "readingTime": "1",
+   "nextArticle": null,
+   "brief": "首页首屏样式闪烁问题排查，不建议 tailwindcss 和 css in js 一起使用",
+   "content": "\n## 问题描述\n\n打开 blog 首页，发现样式会闪烁，非常短暂，看起来先展示 mobile 的样式，再展示 pc 的样式\n\n![[blog-first-paint-issue.gif|400]]\n\n## 问题排查\n\n1. 问题猜想 1，是移动优先的写法导致了问题，但是闪烁很短暂，没法判断第一次展示的样式，以及 debug 到当时的 css。\n\n```jsx *{4}\n<section\n  className={cx(\n    'container flex gap-2 relative',\n    'flex-col', // 👉 默认样式是移动端的样式，再用 @media 适配其他端\n    'lg:max-w-5xl lg:flex-row lg:mt-4 lg:items-start lg:mx-auto'\n  )}\n>\n  ...\n</section>\n```\n\n用 devtools 的 performance screenshot 录制渲染过程，从录制的结果看，页面从窄到宽，但第一次渲染不是 mobile 的样式，所以 `@media` 里的样式不影响渲染顺序。\n\n![[blog-first-paint-issue-1.gif|400]]\n\n2. 问题猜想 2，渲染过程中，js 插入了 css 导致闪烁\n\n```jsx *{4}\n<section\n  className={cx(\n    css`\n      flex: 1;\n      min-height: calc(100.1vh - var(--header-height));\n    `\n  )}\n>\n  {children}\n</section>\n```\n\n代码里有部分 css in js，js 插入 `flex: 1` 后使内容扩大占满了剩余空间，导致了页面闪烁。移除后就没有闪烁的问题。\n\n## 建议\n\nstyle component、emotion 等 css in js 存在非静态代码，无法在构建时抽离 css，因此不建议 tailwindcss 和 css in js 一起使用，避免样式闪烁问题。\n如果要使用 css in js，可以使用 css module 的平替 [vanilla-extract](https://mantine.dev/styles/vanilla-extract/)，它支持在 js 里写 css，在构建时抽离 css。\n\n> 本博客 ([marsk6](https://marsk6.github.io/)) 所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！\n",
+   "mtime": 1703822100000.0
+  }
+ ],
+ "_Post_tags": [
+  {
+   "A": "clev8cabd0012yvgyayxp1dg3",
+   "B": "clev8cab70002yvgyq429lrps"
+  },
+  {
+   "A": "clevkpu8100398qgys7brszna",
+   "B": "clevkpu7u00118qgyunb04uuj"
+  },
+  {
+   "A": "clevkpu8400508qgylr2fojss",
+   "B": "clevkpu7w00208qgyy7t49hgs"
+  },
+  {
+   "A": "clexuqgdz0017v8mx04k6jn14",
+   "B": "clexuqgdh0004v8mxqgwh6n0v"
+  },
+  {
+   "A": "cley0h93w001778mxtbmiuav7",
+   "B": "cley0h909000278mxvgtmn1jv"
+  },
+  {
+   "A": "clf0l0g0q00437umxfbbegzig",
+   "B": "clf0l0fzy00137umxoja46ebr"
+  },
+  {
+   "A": "clh1qt8xc0002msc39cuweq8c",
+   "B": "clh1qt8x70000msc3ukmmuejk"
+  },
+  {
+   "A": "clh26e1n10006mspg64w3qxqy",
+   "B": "clh26e1mk0000mspgd110m134"
+  },
+  {
+   "A": "clh26e1n10006mspg64w3qxqy",
+   "B": "clh26e1mo0002mspgzcz42tax"
+  },
+  {
+   "A": "clha81the0005vimxrxuxhjip",
+   "B": "clh26e1mo0002mspgzcz42tax"
+  },
+  {
+   "A": "clhbsv51d0002gyrno0zw1yd8",
+   "B": "clhbsv5160000gyrn2pfho26c"
+  },
+  {
+   "A": "cli7db5rf0006mse7w55uzwee",
+   "B": "clhbsv5160000gyrn2pfho26c"
+  },
+  {
+   "A": "cli7e8agy000emse7h4gol4gx",
+   "B": "clhbsv5160000gyrn2pfho26c"
+  },
+  {
+   "A": "clidauzp80002mscck6ht62i8",
+   "B": "clhbsv5160000gyrn2pfho26c"
+  },
+  {
+   "A": "clipr3teg0006msp1dsyjb857",
+   "B": "clhbsv5160000gyrn2pfho26c"
+  },
+  {
+   "A": "cljnpqu7w0004mxkovfh49c86",
+   "B": "cljnpqu7k0002mxkok7sclhob"
+  },
+  {
+   "A": "cljy34u3g0002mx5vlohhjcqq",
+   "B": "clf0l0fzy00137umxoja46ebr"
+  },
+  {
+   "A": "clm3mjz050002gyn807mtyz1d",
+   "B": "clev8cab70002yvgyq429lrps"
+  },
+  {
+   "A": "clm3mkej80006gyn8b9flc7zm",
+   "B": "clevkpu7u00118qgyunb04uuj"
+  },
+  {
+   "A": "clo42laad0004mxsg954b79u2",
+   "B": "clo42la9y0002mxsgq79xjo6v"
+  },
+  {
+   "A": "clqytwj110004mxc2rca6mof8",
+   "B": "clexuqgdh0004v8mxqgwh6n0v"
+  }
+ ]
+}

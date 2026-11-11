@@ -54,3 +54,10 @@ model UploadPost {
   preview             String?
   post                Post?   @relation("Post_attachment")
 }
+
+model User {
+  id       String @id @default(cuid())
+  name     String @default("")
+  email    String @unique @default("")
+  password String
+}

@@ -50,6 +50,7 @@ import { createPosts } from './admin/api'
 
 const Post: Lists.Post = list({
   fields: {
+    isPublished: checkbox({ defaultValue: true }),
     slug: text({ isIndexed: 'unique' }),
     title: text({ defaultValue: 'default title' }),
     tags: relationship({
@@ -134,7 +135,10 @@ const Post: Lists.Post = list({
       }
     },
   },
-  access: publicReadAdminWrite,
+  access: {
+    ...publicReadAdminWrite,
+    filter: { query: ({ session }) => session ? true : { isPublished: { equals: true } } },
+  },
 })
 
 const Tag = list({

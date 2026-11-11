@@ -1,5 +1,4 @@
 import { config, list } from '@keystone-6/core'
-import { allowAll } from '@keystone-6/core/access'
 import {
   text,
   json,
@@ -8,7 +7,39 @@ import {
   file,
   timestamp,
   checkbox,
+  password,
 } from '@keystone-6/core/fields'
+import { withAuth, session } from './auth'
+
+type AccessArgs = { session?: { data?: unknown } }
+const isSignedIn = ({ session }: AccessArgs) => !!session
+// Readers (including the static blog build) stay anonymous; writes need login.
+const publicReadAdminWrite = {
+  operation: {
+    query: () => true,
+    create: isSignedIn,
+    update: isSignedIn,
+    delete: isSignedIn,
+  },
+}
+const adminOnly = {
+  operation: {
+    query: isSignedIn,
+    create: isSignedIn,
+    update: isSignedIn,
+    delete: isSignedIn,
+  },
+}
+// After a signed-in admin changes content, ask Render to rebuild the static
+// frontend. Bootstrap/seed writes run without a session and never trigger it.
+const triggerRedeploy = (context: { session?: unknown }) => {
+  if (!context.session) return
+  const url = process.env.REDEPLOY_HOOK_URL
+  if (!url) return
+  fetch(url, { method: 'POST' }).catch((err) =>
+    console.warn('redeploy hook failed', err)
+  )
+}
 import dayjs from 'dayjs'
 import { Lists } from '.keystone/types'
 import rt from 'reading-time'
@@ -95,9 +126,7 @@ const Post: Lists.Post = list({
       return resolvedData
     },
     afterOperation: async ({ operation, item, context }) => {
-      if (operation === 'create') {
-        return
-      }
+      triggerRedeploy(context)
     },
     beforeOperation: async ({ operation, item, context }) => {
       if (operation === 'delete') {
@@ -105,7 +134,7 @@ const Post: Lists.Post = list({
       }
     },
   },
-  access: allowAll,
+  access: publicReadAdminWrite,
 })
 
 const Tag = list({
@@ -117,7 +146,12 @@ const Tag = list({
       ui: { hideCreate: true },
     }),
   },
-  access: allowAll,
+  access: publicReadAdminWrite,
+  hooks: {
+    afterOperation: async ({ context }) => {
+      triggerRedeploy(context)
+    },
+  },
 })
 
 const Category = list({
@@ -129,7 +163,12 @@ const Category = list({
       ui: { hideCreate: true },
     }),
   },
-  access: allowAll,
+  access: publicReadAdminWrite,
+  hooks: {
+    afterOperation: async ({ context }) => {
+      triggerRedeploy(context)
+    },
+  },
 })
 
 const UploadPost = list({
@@ -200,34 +239,60 @@ const UploadPost = list({
       }
     },
   },
-  access: allowAll,
+  access: adminOnly,
 })
-export default config({
-  db: {
-    provider: 'sqlite',
-    enableLogging: false,
-    url:
-      process.env.NODE_ENV === 'production'
-        ? 'file:./app.db'
-        : 'file:./app-dev.db',
+
+const User = list({
+  fields: {
+    name: text(),
+    email: text({ isIndexed: 'unique', validation: { isRequired: true } }),
+    password: password({ validation: { isRequired: true } }),
   },
-  experimental: {
-    generateNextGraphqlAPI: true,
-    generateNodeAPI: true,
-  },
-  lists: { Post, Tag, Category, UploadPost },
-  storage: {
-    local_file_storage: {
-      kind: 'local',
-      type: 'file',
-      generateUrl: (path) => `http://localhost:3000/files${path}`,
-      serverRoute: {
-        path: '/files',
-      },
-      transformName: (filename) => {
-        return filename
-      },
-      storagePath: '_posts',
+  // Users are provisioned by script/bootstrap.ts only; no public creation.
+  access: {
+    operation: {
+      query: isSignedIn,
+      create: () => false,
+      update: isSignedIn,
+      delete: () => false,
     },
   },
 })
+
+export default withAuth(
+  config({
+    db: {
+      // DATABASE_URL (Neon) selects Postgres; unset keeps local SQLite dev.
+      provider: process.env.DATABASE_URL ? 'postgresql' : 'sqlite',
+      enableLogging: false,
+      url:
+        process.env.DATABASE_URL ||
+        (process.env.NODE_ENV === 'production'
+          ? 'file:./app.db'
+          : 'file:./app-dev.db'),
+    },
+    session,
+    ui: {
+      isAccessAllowed: (context) => !!context.session?.data,
+    },
+    experimental: {
+      generateNextGraphqlAPI: true,
+      generateNodeAPI: true,
+    },
+    lists: { Post, Tag, Category, UploadPost, User },
+    storage: {
+      local_file_storage: {
+        kind: 'local',
+        type: 'file',
+        generateUrl: (path) => `http://localhost:3000/files${path}`,
+        serverRoute: {
+          path: '/files',
+        },
+        transformName: (filename) => {
+          return filename
+        },
+        storagePath: '_posts',
+      },
+    },
+  })
+)
